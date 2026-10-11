@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>setting</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+     <form action="/setting" method="POST">
+         <label for="name">name</label>
+         <input type="text" id="name" name="name">
+
+         <label for="email">email</label>
+         <input type="email" id="email" name="email">
+
+         <label>theme</label>
+         <input type="radio" name="theme" id="light" value="light">
+         <label for="light">light</label>
+         <input type="radio" name="theme" id="dark" value="dark">
+         <label for="dark">dark</label>
+
+         <label for="notification">notification</label>
+         <input type="checkbox" id="notification" name="notification">
+
+         <label>bio</label>
+         <textarea id="bio" name="bio"></textarea>
+     </form>
+    </body>
+</html>
