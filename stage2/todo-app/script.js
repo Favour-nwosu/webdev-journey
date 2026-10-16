@@ -7,7 +7,16 @@ let tasks = JSON.parse(localStorage.getItem("tasks")) || []
     list.innerHTML= ""
     tasks.forEach(function(tasktext , index ){
     const li = document.createElement("li")
-    li.textContent = tasktext
+    li.textContent = tasktext.text
+
+    if (tasktext.done) {
+  li.style.textDecoration= "line-through"
+}
+li.addEventListener("click" , function (){
+  tasks[index].done = !tasks[index].done
+  localStorage.setItem("tasks", JSON.stringify(tasks))
+  renderTasks()
+  })
 
     const deleteBtn = document.createElement("button")
     deleteBtn.textContent = "delete"
@@ -20,11 +29,10 @@ let tasks = JSON.parse(localStorage.getItem("tasks")) || []
     list.appendChild(li)
     })
   }
-
 button.addEventListener("click" , function(){
     const tasktext = input.value
     if (tasktext !==""){
-      tasks.push(tasktext)
+      tasks.push({ text: tasktext , done : false})
       localStorage.setItem("tasks" ,JSON.stringify(tasks))
       renderTasks()
       input.value = ""
