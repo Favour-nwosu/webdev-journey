@@ -1,11 +1,11 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 
 @app.route("/")
 def home():
-    return "Flask is running"
+    return render_template("index.html", username="Favour", message_count=5)
 
 
 @app.route("/about")
