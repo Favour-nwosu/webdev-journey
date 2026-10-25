@@ -6,6 +6,15 @@
    </head>
    <body>
     <p>hello, {{ username }}!</p>
-    <P>you have {{message_count}} new message.</P>
+     {% for post in posts %}
+      <h2>{{post.title}}</h2>
+      {% if post.author == "favour"%}
+        <p>by you </p>
+      {%else%} 
+        <P>by {{post.author}}</P>
+      {% endif %} 
+      <p>{{post.body}}</p>
+      <hr>
+     {% endfor %}
    </body>
 </html>
