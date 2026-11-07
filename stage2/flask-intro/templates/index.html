@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
+ <head>
     <meta charset="UTF-8">
     <title>favour wedsite</title>
-   </head>
-   <body>
-    <p>hello, {{ username }}!</p>
-     {% for post in posts %}
-      <h2>{{post.title}}</h2>
+  </head>
+  <body>
+     <p>hello, {{ username }}!</p>
+    <form method="POST" action ="/new-post">
+      <input type="text" name="title" placeholder="post title">
+      <input type="text"name ="body" placeholder="post body">
+      <button type="submit">add post</button>
+    </form>
+      {% for post in posts %}
+       <h2>{{post.title}}</h2>
       {% if post.author == "favour"%}
         <p>by you </p>
       {%else%} 
@@ -15,6 +20,6 @@
       {% endif %} 
       <p>{{post.body}}</p>
       <hr>
-     {% endfor %}
-   </body>
-</html>
+      {% endfor %}
+  </body>
+</html> 

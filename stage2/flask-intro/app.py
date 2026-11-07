@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -22,5 +22,8 @@ def about():
     return "what is the about page"
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
+@app.route("/new-post", methods=["POST"])
+def new_post():
+    title = request.form["title"]
+    body = request.form["body"]
+    return f"title: {title}-body: {body}"
