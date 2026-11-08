@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
@@ -26,4 +26,4 @@ def about():
 def new_post():
     title = request.form["title"]
     body = request.form["body"]
-    return f"title: {title}-body: {body}"
+    return redirect(url_for("home"))
