@@ -1,19 +1,15 @@
 from flask import Flask, render_template, request, redirect, url_for
+import sqlite3
 
 app = Flask(__name__)
 
 
 @app.route("/")
 def home():
-    posts = [
-        {"title": "first post", "author": "favour",
-            "body": "this is the first post."},
-        {"title": "second post", "author": "Alice",
-            "body": "this is the second post"},
-        {"title": "third post", "author": "Bob",
-            "body": "this is the third post."}
-    ]
-
+    conn = sqlite3.connect('posts.db')
+    posts = conn.execute(
+        "SELECT id , title , body, author FROM posts").fetchall()
+    conn.close()
     return render_template("index.html", username="Favour", posts=posts)
 
 
@@ -26,4 +22,11 @@ def about():
 def new_post():
     title = request.form["title"]
     body = request.form["body"]
+    conn = sqlite3.connect('posts.db')
+    conn.execute(
+        "INSERT INTO posts (title, body, author) VALUES (?,?,?)", (title,
+                                                                   body, "Favour")
+    )
+    conn.commit()
+    conn.close()
     return redirect(url_for("home"))
