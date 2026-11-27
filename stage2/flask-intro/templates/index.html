@@ -6,20 +6,24 @@
   </head>
   <body>
      <p>hello, {{ username }}!</p>
-    <form method="POST" action ="/new-post">
-      <input type="text" name="title" placeholder="post title">
-      <input type="text"name ="body" placeholder="post body">
-      <button type="submit">add post</button>
-    </form>
+      {% if username %}
+       <form method="POST" action ="/new-post">
+        <input type="text" name="title" placeholder="post title">
+        <input type="text"name ="body" placeholder="post body">
+        <button type="submit">add post</button>
+       </form>
+      {% else %}
+       <p>please log in to post</p>
+      {% endif %}
       {% for post in posts %}
-       <h2>{{post[1]}}</h2>
+        <h2>{{post[1]}}</h2>
       {% if post[3] == session.get("user_username")%}
         <p>by you </p>
       {%else%} 
         <P>by {{post[3]}}</P>
       {% endif %} 
-      <p>{{post[2]}}</p>
-      <hr>
+       <p>{{post[2]}}</p>
+       <hr>
       {% endfor %}
   </body>
 </html> 

@@ -57,6 +57,8 @@ def about():
 
 @app.route("/new-post", methods=["POST"])
 def new_post():
+    if not session.get("user_username"):
+        return redirect(url_for("login"))
     title = request.form["title"]
     body = request.form["body"]
     conn = sqlite3.connect('posts.db')
