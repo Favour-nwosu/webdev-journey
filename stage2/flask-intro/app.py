@@ -69,3 +69,9 @@ def new_post():
     conn.commit()
     conn.close()
     return redirect(url_for("home"))
+
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("login"))
